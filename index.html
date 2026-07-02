@@ -1,0 +1,1374 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Viu Telecom</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+<link rel="shortcut icon" href="favicon.ico" type="image/x-icon" class="favicon">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --navy: #0d1f6e;
+    --navy-dark: #091559;
+    --yellow: #f5d800;
+    --yellow-light: #ffe94d;
+    --white: #ffffff;
+    --light-bg: #f4f6ff;
+    --text-dark: #0a1545;
+    --text-muted: #5a6a9a;
+    --radius: 16px;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: var(--white);
+    color: var(--text-dark);
+    overflow-x: hidden;
+  }
+
+  .favicon {
+    width: 300px;
+    height: 300px;
+  }
+  /* ── NAV ── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    background: var(--navy);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 5vw;
+    height: 68px;
+    box-shadow: 0 2px 20px rgba(0,0,0,.3);
+  }
+
+  .nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .logo-circle {
+    width: 44px; height: 44px;
+    border-radius: 50%;
+    background: var(--yellow);
+    display: flex; align-items: center; justify-content: center;
+    border: 3px solid var(--white);
+  }
+
+  .logo-circle span {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 900;
+    font-size: 13px;
+    color: var(--navy);
+    letter-spacing: -0.5px;
+  }
+
+  .nav-brand {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    color: var(--white);
+    font-size: 18px;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 32px;
+    list-style: none;
+  }
+
+  .nav-links a {
+    color: rgba(255,255,255,.8);
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    transition: color .2s;
+  }
+
+  .nav-links a:hover { color: var(--yellow); }
+
+  .nav-cta {
+    background: var(--yellow);
+    color: var(--navy) !important;
+    padding: 8px 20px;
+    border-radius: 50px;
+    font-weight: 700 !important;
+    color: var(--navy);
+    transition: background .2s, transform .2s !important;
+  }
+
+  .nav-cta:hover { background: var(--yellow-light); transform: scale(1.04); }
+
+  .menu-toggle {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+    gap: 5px;
+  }
+
+  .menu-toggle .bar {
+    height: 3px;
+    width: 25px;
+    background-color: var(--white);
+    border-radius: 5px;
+    transition: all 0.3s ease;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    background: var(--navy);
+    display: flex;
+    align-items: center;
+    padding: 100px 5vw 60px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-bg-circle {
+    position: absolute;
+    border-radius: 50%;
+    background: var(--yellow);
+    opacity: .06;
+  }
+
+  .hero-bg-circle.c1 { width: 700px; height: 700px; right: -200px; top: -150px; }
+  .hero-bg-circle.c2 { width: 400px; height: 400px; left: -100px; bottom: -100px; }
+
+  .hero-inner {
+    max-width: 1100px;
+    margin: auto;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: center;
+  }
+
+  .hero-label {
+    display: inline-block;
+    background: var(--yellow);
+    color: var(--navy);
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 6px 16px;
+    border-radius: 50px;
+    margin-bottom: 24px;
+  }
+
+  .hero h1 {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 900;
+    font-size: clamp(36px, 5vw, 62px);
+    line-height: 1.05;
+    color: var(--white);
+    margin-bottom: 24px;
+  }
+
+  .hero h1 em {
+    font-style: normal;
+    color: var(--yellow);
+  }
+
+  .hero p {
+    color: rgba(255,255,255,.7);
+    font-size: 17px;
+    line-height: 1.7;
+    margin-bottom: 40px;
+  }
+
+  .hero-actions {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+
+  .btn-primary {
+    background: var(--yellow);
+    color: var(--navy);
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: 15px;
+    padding: 14px 32px;
+    border-radius: 50px;
+    text-decoration: none;
+    transition: transform .2s, box-shadow .2s;
+    display: inline-flex; align-items: center; gap: 8px;
+  }
+
+  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(245,216,0,.4); }
+
+  .btn-outline {
+    border: 2px solid rgba(255,255,255,.35);
+    color: var(--white);
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    font-size: 15px;
+    padding: 14px 32px;
+    border-radius: 50px;
+    text-decoration: none;
+    transition: border-color .2s, background .2s;
+    display: inline-flex; align-items: center; gap: 8px;
+  }
+
+  .btn-outline:hover { border-color: var(--yellow); background: rgba(245,216,0,.08); }
+
+  /* hero visual */
+  .hero-visual {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+  }
+
+  .hero-ring {
+    width: 300px; height: 300px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    position: relative;
+    animation: spin-slow 20s linear infinite;
+  }
+
+  .hero-ring::before {
+    content: '';
+    position: absolute;
+    inset: 16px;
+    border-radius: 50%;
+  }
+
+  @keyframes spin-slow {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+
+  .hero-center-logo {
+    width: 200px; height: 200px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    animation: counter-spin 20s linear infinite;
+  }
+
+  .viutelecom{
+    width: 300px;
+    
+  }
+
+  @keyframes counter-spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(-360deg); }
+  }
+
+  .hero-center-logo .logo-text {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 900;
+    font-size: 42px;
+    color: var(--navy);
+    line-height: 1;
+  }
+
+  .hero-center-logo .logo-sub {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    font-size: 11px;
+    text-align: center;
+  }
+
+  /* stats bar */
+  .stats-bar {
+    background: var(--yellow);
+    padding: 28px 5vw;
+  }
+
+  .stats-inner {
+    max-width: 1100px;
+    margin: auto;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    text-align: center;
+  }
+
+  .stat-item {}
+
+  .stat-num {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 900;
+    font-size: 36px;
+    color: var(--navy);
+    line-height: 1;
+  }
+
+  .stat-label {
+    font-size: 13px;
+    color: rgba(9,21,89,.7);
+    font-weight: 500;
+    margin-top: 4px;
+  }
+
+  /* ── SECTIONS ── */
+  .section {
+    padding: 90px 5vw;
+  }
+
+  .section-inner {
+    max-width: 1100px;
+    margin: auto;
+  }
+
+  .section-label {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--navy);
+    opacity: .5;
+    margin-bottom: 12px;
+  }
+
+  .section-title {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 900;
+    font-size: clamp(28px, 4vw, 44px);
+    color: var(--text-dark);
+    line-height: 1.15;
+    margin-bottom: 16px;
+  }
+
+  .section-title em {
+    font-style: normal;
+    color: var(--navy);
+    position: relative;
+  }
+
+  .section-subtitle {
+    color: var(--text-muted);
+    font-size: 17px;
+    line-height: 1.7;
+    max-width: 560px;
+  }
+
+  /* ── QUEM SOMOS ── */
+  #quem-somos {
+    background: var(--light-bg);
+  }
+
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+    margin-top: 60px;
+  }
+
+  .about-visual {
+    position: relative;
+  }
+
+  .about-card {
+    background: var(--navy);
+    border-radius: var(--radius);
+    padding: 48px 40px;
+    color: var(--white);
+  }
+
+  .about-card-icon {
+    width: 56px; height: 56px;
+    background: var(--yellow);
+    border-radius: 14px;
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 20px;
+    font-size: 24px;
+  }
+
+  .about-card h3 {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 800;
+    font-size: 24px;
+    margin-bottom: 14px;
+    color: var(--yellow);
+  }
+
+  .about-card p {
+    color: rgba(255,255,255,.75);
+    line-height: 1.75;
+  }
+
+  .about-badge {
+    position: absolute;
+    bottom: -20px; right: -20px;
+    background: var(--yellow);
+    border-radius: 50%;
+    width: 110px; height: 110px;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 900;
+    color: var(--navy);
+    text-align: center;
+    box-shadow: 0 8px 24px rgba(245,216,0,.4);
+  }
+
+  .about-badge .big { font-size: 28px; line-height: 1; }
+  .about-badge .small { font-size: 10px; font-weight: 600; }
+
+  #conexao{
+    padding-bottom: 20px;
+  }
+
+  .about-content {}
+
+  .about-points {
+    list-style: none;
+    margin-top: 32px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .about-points li {
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+  }
+
+  .point-icon {
+    width: 40px; height: 40px;
+    min-width: 40px;
+    border-radius: 12px;
+    background: var(--navy);
+    display: flex; align-items: center; justify-content: center;
+    color: var(--yellow);
+    font-size: 18px;
+    margin-top: 2px;
+  }
+
+  .point-text strong {
+    color: var(--navy);
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    display: block;
+    margin-bottom: 4px;
+    font-size: 15px;
+  }
+
+  .point-text p {
+    color: var(--text-muted);
+    font-size: 14px;
+    line-height: 1.6;
+  }
+
+  /* ── PLANOS ── */
+  #planos {
+    background: var(--white);
+  }
+
+  .plans-header {
+    text-align: center;
+    margin-bottom: 56px;
+  }
+
+  .plans-header .section-subtitle { margin: 0 auto; }
+
+  .plans-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+
+  .plan-card {
+    border-radius: var(--radius);
+    padding: 40px 32px;
+    border: 2px solid #e8eaf6;
+    position: relative;
+    transition: transform .25s, box-shadow .25s;
+    background: var(--yellow);
+  }
+
+  .plan-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 20px 50px rgba(13,31,110,.1);
+  }
+
+  .plan-card.featured {
+    background: var(--navy);
+    border-color: var(--navy);
+    transform: scale(1.04);
+    box-shadow: 0 20px 60px rgba(13,31,110,.25);
+  }
+
+  .plan-card.featured:hover {
+    transform: scale(1.04) translateY(-6px);
+  }
+
+  .plan-badge-featured {
+    position: absolute;
+    top: -14px; left: 50%; transform: translateX(-50%);
+    background: var(--yellow);
+    color: var(--navy);
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: 11px;
+    letter-spacing: 1px;
+    padding: 5px 18px;
+    border-radius: 50px;
+    white-space: nowrap;
+  }
+
+  .plan-speed {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 900;
+    font-size: 56px;
+    color: var(--navy);
+    line-height: 1;
+  }
+
+  .plan-card.featured .plan-speed { color: var(--yellow); }
+
+  .plan-speed span {
+    font-size: 22px;
+    font-weight: 700;
+    vertical-align: bottom;
+  }
+
+  .plan-name {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: 16px;
+    color: var(--text-muted);
+    margin-top: 4px;
+    margin-bottom: 24px;
+  }
+
+  .plan-card.featured .plan-name { color: rgba(255,255,255,.65); }
+
+  .plan-features {
+    list-style: none;
+    margin-bottom: 32px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .plan-features li {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 14px;
+    color: var(--text-muted);
+  }
+
+  .plan-card.featured .plan-features li { color: rgba(255,255,255,.75); }
+
+  .plan-features li::before {
+    content: '✓';
+    width: 22px; height: 22px;
+    min-width: 22px;
+    border-radius: 50%;
+    background: var(--navy);
+    color: var(--yellow);
+    font-size: 12px;
+    font-weight: 700;
+    display: flex; align-items: center; justify-content: center;
+  }
+
+  .plan-card.featured .plan-features li::before {
+    background: var(--yellow);
+    color: var(--navy);
+  }
+
+  .plan-price {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 900;
+    font-size: 32px;
+    color: var(--navy);
+    margin-bottom: 20px;
+  }
+
+  .plan-price sub {
+    font-size: 16px;
+    font-weight: 600;
+    vertical-align: middle;
+  }
+
+  .plan-card.featured .plan-price { color: var(--yellow); }
+
+  .btn-plan {
+    display: block;
+    text-align: center;
+    padding: 14px;
+    border-radius: 50px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: 14px;
+    text-decoration: none;
+    transition: transform .2s, box-shadow .2s;
+    background: var(--navy);
+    color: var(--yellow);
+  }
+
+  .plan-card.featured .btn-plan {
+    background: var(--yellow);
+    color: var(--navy);
+  }
+
+  .btn-plan:hover { transform: scale(1.03); box-shadow: 0 6px 20px rgba(0,0,0,.15); }
+
+  .plans-cta-note {
+    text-align: center;
+    margin-top: 40px;
+    color: var(--text-muted);
+    font-size: 14px;
+  }
+
+  .plans-cta-note a {
+    color: var(--navy);
+    font-weight: 600;
+    text-decoration: none;
+  }
+
+  /* ── CIDADES ── */
+  #cidades {
+    background: var(--navy);
+    padding: 90px 5vw;
+  }
+
+  #cidades .section-label { color: rgba(255,255,255,.5); }
+  #cidades .section-title { color: var(--white); }
+  #cidades .section-subtitle { color: rgba(255,255,255,.6); }
+
+  .cities-header { margin-bottom: 56px; }
+
+  .cities-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+  }
+
+  .city-card {
+    border-radius: var(--radius);
+    overflow: hidden;
+    position: relative;
+    aspect-ratio: 3/4;
+    cursor: default;
+    transition: transform .3s;
+  }
+
+  .city-card:hover { transform: scale(1.03); }
+
+  .city-img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  /* Placeholder image using gradient */
+  .city-photo {
+    width: 100%;
+    height: 100%;
+    position: relative;
+  }
+
+  .cidadesatuamos{
+    width: 400px;
+    height: 400px;
+  }
+
+  .city-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(9,21,89,.9) 0%, rgba(9,21,89,.2) 60%, transparent 100%);
+  }
+
+  .city-info {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    padding: 24px 20px;
+  }
+
+  .city-name {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 800;
+    font-size: 18px;
+    color: var(--white);
+    margin-bottom: 6px;
+  }
+
+  .city-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: var(--yellow);
+    color: var(--navy);
+    font-size: 11px;
+    font-weight: 700;
+    padding: 4px 12px;
+    border-radius: 50px;
+  }
+
+  /* city photo placeholders */
+  .city-photo-bg {
+    width: 100%; height: 100%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 48px;
+  }
+
+  .city-photo-bg.c1 { background: linear-gradient(135deg, #1a3a8f, #0d2060); }
+  .city-photo-bg.c2 { background: linear-gradient(135deg, #0d5c2f, #073d1f); }
+  .city-photo-bg.c3 { background: linear-gradient(135deg, #6b2fa0, #45197a); }
+  .city-photo-bg.c4 { background: linear-gradient(135deg, #8b4513, #5c2d0d); }
+
+  /* ── CONTACT ── */
+  #contato {
+    background: var(--light-bg);
+  }
+
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+    margin-top: 60px;
+  }
+
+  .contact-info { display: flex; flex-direction: column; gap: 28px; }
+
+  .contact-item {
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+  }
+
+  .contact-icon {
+    width: 52px; height: 52px;
+    min-width: 52px;
+    border-radius: 14px;
+    background: var(--navy);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 22px;
+  }
+
+  .whatsicone{
+    width: 35px;
+    height: 35px;
+  }
+
+  .relogioicone{
+    width: 43px;
+    height: 43px;
+  }
+
+
+  .contact-item strong {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    display: block;
+    margin-bottom: 4px;
+  }
+
+  .contact-item p, .contact-item a {
+    color: var(--text-muted);
+    font-size: 15px;
+    text-decoration: none;
+    transition: color .2s;
+  }
+
+  .contact-item a:hover { color: var(--navy); }
+
+  .contact-form-card {
+    background: var(--navy);
+    border-radius: var(--radius);
+    padding: 48px 40px;
+  }
+
+  .contact-form-card h3 {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 800;
+    font-size: 22px;
+    color: var(--white);
+    margin-bottom: 8px;
+  }
+
+  .contact-form-card p {
+    color: rgba(255,255,255,.6);
+    font-size: 14px;
+    margin-bottom: 28px;
+  }
+
+  .form-group { margin-bottom: 16px; }
+
+  .form-group label {
+    display: block;
+    color: rgba(255,255,255,.7);
+    font-size: 13px;
+    font-weight: 500;
+    margin-bottom: 6px;
+  }
+
+  .form-group input,
+  .form-group select {
+    width: 100%;
+    padding: 12px 16px;
+    border-radius: 10px;
+    border: 2px solid rgba(255,255,255,.15);
+    background: rgba(255,255,255,.07);
+    color: var(--white);
+    font-size: 15px;
+    font-family: 'Inter', sans-serif;
+    outline: none;
+    transition: border-color .2s;
+  }
+
+  .form-group input::placeholder { color: rgba(255,255,255,.3); }
+  .form-group input:focus, .form-group select:focus { border-color: var(--yellow); }
+
+  .form-group select option { background: var(--navy); }
+
+  .btn-form {
+    width: 100%;
+    padding: 15px;
+    background: var(--yellow);
+    color: var(--navy);
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: 15px;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    margin-top: 8px;
+    transition: background .2s, transform .2s;
+    text-decoration: none;
+    display: block;
+    text-align: center;
+  }
+
+  .btn-form:hover { background: var(--yellow-light); transform: translateY(-2px); }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--navy-dark);
+    padding: 48px 5vw 28px;
+    color: rgba(255,255,255,.6);
+  }
+
+  .footer-inner {
+    max-width: 1100px;
+    margin: auto;
+  }
+
+  .footer-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 32px;
+    border-bottom: 1px solid rgba(255,255,255,.1);
+    margin-bottom: 24px;
+  }
+
+  .footer-brand {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 800;
+    font-size: 20px;
+    color: var(--white);
+  }
+
+  .footer-brand span { color: var(--yellow); }
+
+  .footer-links {
+    display: flex;
+    gap: 28px;
+    list-style: none;
+  }
+
+  .footer-links a {
+    color: rgba(255,255,255,.6);
+    text-decoration: none;
+    font-size: 14px;
+    transition: color .2s;
+  }
+
+  .footer-links a:hover { color: var(--yellow); }
+
+  .footer-bottom {
+    text-align: center;
+    font-size: 13px;
+  }
+
+  #flowcontent a {
+    color: rgba(255, 255, 255, 0.575);
+    text-decoration: none;
+  }
+
+  #flowcontent a:hover{
+    text-decoration: underline;
+  }
+  /* WhatsApp float */
+  .whatsapp-float {
+    position: fixed;
+    bottom: 28px; right: 28px;
+    z-index: 200;
+    width: 58px; height: 58px;
+    border-radius: 50%;
+    background: #25d366;
+    display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 6px 24px rgba(37,211,102,.5);
+    text-decoration: none;
+    animation: pulse-green 2s infinite;
+    transition: transform .2s;
+  }
+
+  .whatsapp-float:hover { transform: scale(1.12); }
+
+  @keyframes pulse-green {
+    0%, 100% { box-shadow: 0 6px 24px rgba(37,211,102,.5); }
+    50% { box-shadow: 0 6px 32px rgba(37,211,102,.8); }
+  }
+
+  .whatsapp-float svg { width: 30px; height: 30px; fill: white; }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    .hero-inner { grid-template-columns: 1fr; text-align: center; }
+    .hero-visual { margin-top: 40px; }
+    .hero-actions { justify-content: center; }
+    .stats-inner { grid-template-columns: repeat(2, 1fr); }
+    .about-grid { grid-template-columns: 1fr; gap: 40px; }
+    .plans-grid { grid-template-columns: 1fr; }
+    .plan-card.featured { transform: none; }
+    .cities-grid { grid-template-columns: repeat(2, 1fr); }
+    .contact-grid { grid-template-columns: 1fr; gap: 40px; }
+    .footer-top { flex-direction: column; gap: 20px; text-align: center; }
+    
+    .menu-toggle { display: flex; }
+    .nav-links {
+      display: none;
+      flex-direction: column;
+      width: 100%;
+      position: absolute;
+      top: 68px;
+      left: 0;
+      background: var(--navy);
+      padding: 20px 5vw;
+      box-shadow: 0 10px 20px rgba(0,0,0,.3);
+    }
+    .nav-links.active { display: flex; }
+    .nav-links li { text-align: center; margin-bottom: 20px; }
+    .nav-links li:last-child { margin-bottom: 0; }
+    
+    .menu-toggle.is-active .bar:nth-child(2) { opacity: 0; }
+    .menu-toggle.is-active .bar:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+    .menu-toggle.is-active .bar:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
+  }
+
+  @media (max-width: 480px) {
+    .cities-grid { grid-template-columns: 1fr 1fr; }
+    .stats-inner { grid-template-columns: repeat(2, 1fr); }
+    .hero-ring { width: 260px; height: 260px; }
+    .hero-center-logo { width: 150px; height: 150px; }
+    .hero-center-logo .logo-text { font-size: 32px; }
+  }
+
+  .viutelecomcima{
+    width: 75px;
+  }
+
+  .iconepessoa{
+    width: 35px;
+  }
+
+  .iconesbaixo{
+    color: var(--navy);
+  }
+
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">
+    <div class="logo-circle"><a href="index.html"><img src="viutelecom.png" alt="viu telecom" class="viutelecomcima"></a></div>
+    <span class="nav-brand"></span>
+  </div>
+  <div class="menu-toggle" id="mobile-menu">
+    <span class="bar"></span>
+    <span class="bar"></span>
+    <span class="bar"></span>
+  </div>
+  <ul class="nav-links">
+    <li><a href="#quem-somos">Quem Somos</a></li>
+    <li><a href="#planos">Planos</a></li>
+    <li><a href="#cidades">Cidades</a></li>
+    <li><a href="#contato" class="nav-cta">Contratar</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg-circle c1"></div>
+  <div class="hero-bg-circle c2"></div>
+  <div class="hero-inner">
+    <div>
+      <h1>Conexão que você <em>realmente</em> precisa</h1>
+      <p>A Viu Telecom leva internet rápida, estável e de qualidade para sua casa e empresa.</p>
+      <div class="hero-actions">
+        <a href="https://wa.me/5527995271167" target="_blank" class="btn-primary">
+          Fale pelo WhatsApp
+        </a>
+        <a href="#planos" class="btn-outline">Ver planos →</a>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="hero-ring">
+        <div class="hero-ring-dot"></div>
+        <div class="hero-center-logo">
+          <div>
+            <img src="viutelecom.png" alt="viu telecom" class="viutelecom">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS BAR -->
+<div class="stats-bar">
+  <div class="stats-inner">
+    <div class="stat-item">
+      <div class="stat-num">4+</div>
+      <div class="stat-label">Cidades atendidas</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">1k+</div>
+      <div class="stat-label">Clientes satisfeitos</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">99%</div>
+      <div class="stat-label">Uptime garantido</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">24h</div>
+      <div class="stat-label">Suporte disponível</div>
+    </div>
+  </div>
+</div>
+
+<!-- QUEM SOMOS -->
+<section class="section" id="quem-somos">
+  <div class="section-inner">
+    <div class="about-grid">
+      <div class="about-visual">
+        <div class="about-card">
+          <h3>Nossa missão</h3>
+          <p id="conexao">Conectar pessoas e negócios com internet de qualidade, levando tecnologia de ponta para cidades que merecem o melhor. Nosso foco é a sua CONEXÃO!</p>
+          <br>
+        </div>
+        <div class="about-badge">
+          <div class="big">5+</div>
+          <div class="small"><strong>ANOS DE EXPERIÊNCIA</strong></div>
+        </div>
+      </div>
+
+      <div class="about-content">
+        <div class="section-label">Quem somos</div>
+        <h2 class="section-title"><em>Mais que internet, uma parceria</em></h2>
+        <p class="section-subtitle">Somos um provedor regional comprometido com a qualidade, atendimento rápido e conexão de verdade para cada cliente.</p>
+
+        <ul class="about-points">
+          <li>
+            <div class="point-icon"><img src="iconeraio.png" alt=""></div>
+            <div class="point-text">
+              <strong>Alta velocidade</strong>
+              <p>Tudo oque você precisa para navegar sem problemas.</p>
+            </div>
+          </li>
+          <li>
+            <div class="point-icon"><img src="iconeraio.png" alt=""></div>
+            <div class="point-text">
+              <strong>Suporte ágil</strong>
+              <p>Atendimento rápido, com profissionais qualificados aguardando por você.</p>
+            </div>
+          </li>
+          <li>
+            <div class="point-icon"><img src="iconepessoa.png" alt="" class="iconepessoa"></div>
+            <div class="point-text">
+              <strong>Presença local</strong>
+              <p>Equipe técnica na sua região para instalação e manutenção.</p>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PLANOS -->
+<section class="section" id="planos">
+  <div class="section-inner">
+    <div class="plans-header">
+      <div class="section-label">Nossos planos</div>
+      <h2 class="section-title"><em>Escolha o plano ideal para você</em></h2>
+      <p class="section-subtitle">Planos flexíveis para residências e empresas. Sem taxa de instalação no primeiro mês.</p>
+    </div>
+
+    <div class="plans-grid">
+      <!-- Plano 1 -->
+      <div class="plan-card">
+        <div class="plan-speed">100<span>Mbps</span></div>
+        <div class="plan-name">Plano Essencial</div>
+        <ul class="plan-features">
+          <li>Download e upload simétrico</li>
+          <li>Wi-Fi incluso</li>
+          <li>Suporte via WhatsApp e residêncial</li>
+        </ul>
+        <div class="plan-price"><sub>R$</sub>75<sub>,00/mês</sub></div>
+        <a href="https://wa.me/5527995271167?text=Olá! Tenho interesse no Plano Essencial de 100Mbps." target="_blank" class="btn-plan">Contratar agora</a>
+      </div>
+
+      <!-- Plano 2 – destaque -->
+      <div class="plan-card featured">
+        <div class="plan-badge-featured">Mais popular</div>
+        <div class="plan-speed">300<span>Mbps</span></div>
+        <div class="plan-name">Plano Pro</div>
+        <ul class="plan-features">
+          <li>Download e upload simétrico</li>
+          <li>Suporte via WhatsApp e residêncial</li>
+          <li>Ultra velocidade via fibra óptica</li>
+        </ul>
+        <div class="plan-price"><sub>R$</sub>79<sub>,00/mês</sub></div>
+        <a href="https://wa.me/5527995271167?text=Olá! Tenho interesse no Plano Pro de 300Mbps." target="_blank" class="btn-plan">Contratar agora</a>
+      </div>
+
+      <!-- Plano 3 -->
+      <div class="plan-card">
+        <div class="plan-speed">500<span>Mbps</span></div>
+        <div class="plan-name">Plano Ultra</div>
+        <ul class="plan-features">
+          <li>Download e upload simétrico</li>
+          <li>Acesso ao YPlay</li>
+          <li>Suporte via WhatsApp e residêncial</li>
+          <li>Ultra velocidade via fibra óptica</li>
+        </ul>
+        <div class="plan-price"><sub>R$</sub>115<sub>,00/mês</sub></div>
+        <a href="https://wa.me/5527995271167?text=Olá! Tenho interesse no Plano Ultra de 500Mbps." target="_blank" class="btn-plan">Contratar agora</a>
+      </div>
+    </div>
+
+    <p class="plans-cta-note">Precisa de um plano empresarial personalizado? <a href="https://wa.me/5527995271167?text=Olá! Preciso de um plano empresarial." target="_blank">Fale com a gente →</a></p>
+  </div>
+</section>
+
+<!-- CIDADES -->
+<section id="cidades">
+  <div class="section-inner" style="max-width:1100px;margin:auto;">
+    <div class="cities-header">
+      <div class="section-label">Cobertura</div>
+      <h2 class="section-title" style="color:white;">Cidades onde atuamos</h2>
+      <p class="section-subtitle">Levando internet de qualidade para toda a região, com mais cidades chegando em breve.</p>
+    </div>
+
+    <div class="cities-grid">
+      <div class="city-card">
+        <div class="city-photo">
+          <img src="altorionovocopia.jpeg" alt="Alto Rio Novo" class="cidadesatuamos">
+          <div class="city-overlay"></div>
+          <div class="city-info">
+            <div class="city-name">Alto Rio Novo</div>
+            <div class="city-tag">Disponível</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="city-card">
+        <div class="city-photo">
+          <img src="colatina.jpeg" alt="Colatina" class="cidadesatuamos">
+          <div class="city-photo-bg c2"></div>
+          <div class="city-overlay"></div>
+          <div class="city-info">
+            <div class="city-name">Colatina</div>
+            <div class="city-tag">Disponível</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="city-card">
+        <div class="city-photo">
+          <img src="mantenopolis.jpeg" alt="Mantenópolis" class="cidadesatuamos">
+          <div class="city-photo-bg c3"></div>
+          <div class="city-overlay"></div>
+          <div class="city-info">
+            <div class="city-name">Mantenópolis</div>
+            <div class="city-tag">Disponível</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="city-card">
+        <div class="city-photo">
+          <img src="pancas.jpeg" alt="Pancas" class="cidadesatuamos">
+          <div class="city-photo-bg c4"></div>
+          <div class="city-overlay"></div>
+          <div class="city-info">
+            <div class="city-name">Pancas</div>
+            <div class="city-tag">Disponível</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <p style="text-align:center; margin-top:32px; color:rgba(255,255,255,.5); font-size:14px;">
+  <a href="https://wa.me/5527995271167?text=Olá! Quero saber se a Viu Telecom atende minha cidade." target="_blank" style="color:var(--yellow); text-decoration:none; font-weight:600;">Consulte cobertura →</a>
+    </p>
+  </div>
+</section>
+
+<!-- CONTATO -->
+<section class="section" id="contato">
+  <div class="section-inner">
+    <div class="contact-grid">
+      <div>
+        <div class="section-label">Fale conosco</div>
+        <h2 class="section-title"><em>Pronto para se conectar?</em></h2>
+        <p class="section-subtitle">Nossa equipe está pronta para te ajudar a escolher o melhor plano e garantir sua instalação.</p>
+
+        <div class="contact-info" style="margin-top:40px;">
+          <div class="contact-item">
+            <div class="contact-icon"><img src="iconewhatsapp.png" alt="icone" class="whatsicone"></div>
+            <div>
+              <strong class="iconesbaixo">WhatsApp</strong>
+              <a href="https://wa.me/5527995271167" target="_blank">(27) 99527-1167</a>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-icon"><img src="localização.png" alt="icone"></div>
+            <div>
+              <strong class="iconesbaixo">Lojas</strong>
+              <p>Alto Rio Novo e Mantenópolis – ES</p>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-icon"><img src="relogio.png" alt="icone" class="relogioicone"></div>
+            <div>
+              <strong class="iconesbaixo">Horário de atendimento</strong>
+              <p>Segunda a sexta, 8h às 18h</p>
+              <p>Sábado, 8h às 12h</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="contact-form-card">
+        <h3>Solicite sua instalação</h3>
+        <p>Preencha abaixo e entraremos em contato rapidamente.</p>
+        <div class="form-group">
+          <label>Seu nome</label>
+          <input type="text" placeholder="João Silva" id="nome">
+        </div>
+        <div class="form-group">
+          <label>WhatsApp</label>
+          <input type="tel" placeholder="(27) 99999-9999" id="telefone">
+        </div>
+        <div class="form-group">
+
+          <label>Cidade</label>
+          <select id="cidade">
+            <option value="">Selecione sua cidade</option>
+            <option>Alto Rio Novo</option>
+            <option>Colatina</option>
+            <option>Mantenópolis</option>
+            <option>Pancas</option>
+            <option>Outra cidade</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Plano de interesse</label>
+          <select id="plano">
+            <option value="">Qual plano te interessa?</option>
+            <option>Plano Essencial – 100 Mbps</option>
+            <option>Plano Pro – 300 Mbps</option>
+            <option>Plano Ultra – 500 Mbps</option>
+            <option>Plano Empresarial</option>
+          </select>
+        </div>
+        <a href="#" class="btn-form" onclick="enviarWhatsApp(event)">Enviar pelo WhatsApp</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand"><span>Viu Telecom</span></div>
+      <ul class="footer-links">
+        <li><a href="#quem-somos">Quem somos</a></li>
+        <li><a href="#planos">Planos</a></li>
+        <li><a href="#cidades">Cidades</a></li>
+        <li><a href="#contato">Contato</a></li>
+      </ul>
+    </div>
+    <div class="footer-bottom">
+      <p>27 99527-1167 · Alto Rio Novo e Mantenópolis – ES</p>
+      <p style="margin-top:6px;" id="flowcontent">Site desenvolvido por <a href="https://www.instagram.com/flowcontentweb/" target="_blank">FlowContent</a></p>
+    </div>
+  </div>
+</footer>
+
+<!-- WhatsApp float -->
+<a href="https://wa.me/5527995271167" target="_blank" class="whatsapp-float" title="Fale conosco pelo WhatsApp">
+  <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+  </svg>
+</a>
+
+<script>
+function enviarWhatsApp(e) {
+  e.preventDefault();
+  const nome = document.getElementById('nome').value || 'Não informado';
+  const telefone = document.getElementById('telefone').value || 'Não informado';
+  const cidade = document.getElementById('cidade').value || 'Não informada';
+  const plano = document.getElementById('plano').value || 'Não selecionado';
+  const msg = `Olá, Viu Telecom! \n\n*Nome:* ${nome}\n*Telefone:* ${telefone}\n*Cidade:* ${cidade}\n*Plano de interesse:* ${plano}\n\nGostaria de contratar a internet!`;
+  window.open(`https://wa.me/5527995271167?text=${encodeURIComponent(msg)}`, '_blank');
+}
+
+// Smooth scroll for nav links
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', function(e) {
+    const target = document.querySelector(this.getAttribute('href'));
+    if (target) {
+      e.preventDefault();
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  });
+});
+
+// Mobile menu toggle
+const mobileMenu = document.getElementById('mobile-menu');
+const navLinks = document.querySelector('.nav-links');
+
+mobileMenu.addEventListener('click', () => {
+  mobileMenu.classList.toggle('is-active');
+  navLinks.classList.toggle('active');
+});
+
+// Close mobile menu when clicking a link
+document.querySelectorAll('.nav-links a').forEach(link => {
+  link.addEventListener('click', () => {
+    mobileMenu.classList.remove('is-active');
+    navLinks.classList.remove('active');
+  });
+});
+</script>
+</body>
+</html>
