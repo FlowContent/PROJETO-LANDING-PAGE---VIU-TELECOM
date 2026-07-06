@@ -473,6 +473,129 @@
   }
 
   /* ── PLANOS ── */
+  /* YPLAY */
+  #yplay {
+    background-color: var(--navy-dark);
+    color: var(--white);
+    overflow: hidden;
+  }
+
+  .yplay-card {
+    display: grid;
+    grid-template-columns: .95fr 1.05fr;
+    gap: 42px;
+    align-items: center;
+    background: rgba(255,255,255,.08);
+    border: 1px solid rgba(255,255,255,.18);
+    border-radius: var(--radius);
+    padding: 44px;
+    position: relative;
+    box-shadow: 0 26px 70px rgba(0,0,0,.22);
+  }
+
+
+  .yplay-content {
+    position: relative;
+    z-index: 2;
+  }
+
+  .yplay-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--yellow);
+    color: var(--navy);
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 800;
+    font-size: 12px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding: 8px 16px;
+    border-radius: 50px;
+    margin-bottom: 20px;
+  }
+
+  .yplay-title {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 900;
+    font-size: clamp(30px, 4vw, 48px);
+    line-height: 1.08;
+    margin-bottom: 18px;
+  }
+
+  .yplay-title em {
+    color: var(--yellow);
+    font-style: normal;
+  }
+
+  .yplay-text {
+    color: rgba(255,255,255,.78);
+    font-size: 17px;
+    line-height: 1.7;
+    margin-bottom: 24px;
+  }
+
+  .yplay-features {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+    list-style: none;
+    margin-bottom: 30px;
+  }
+
+  .yplay-features li {
+    background: rgba(255,255,255,.1);
+    border: 1px solid rgba(255,255,255,.14);
+    border-radius: 12px;
+    padding: 12px 14px;
+    color: rgba(255,255,255,.86);
+    font-size: 14px;
+    font-weight: 600;
+  }
+
+  .yplay-actions {
+    display: flex;
+    gap: 14px;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+
+  .yplay-note {
+    color: rgba(255,255,255,.62);
+    font-size: 13px;
+    margin-top: 10px;
+  }
+
+  .yplay-visual {
+    position: relative;
+    z-index: 2;
+    min-height: 360px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .yplay-visual::before {
+    content: '';
+    position: absolute;
+    inset: 9% 2% 5% 10%;
+    border-radius: 28px;
+    background:
+      linear-gradient(145deg, rgba(12,78,185,.96));
+    box-shadow: 0 0 55px rgba(0,221,255,.36);
+  }
+
+  .yplay-image {
+    width: min(100%, 620px);
+    max-height: 430px;
+    object-fit: contain;
+    position: absolute;
+    top: 14%;
+    left: 5%;
+    z-index: 2;
+    filter: drop-shadow(0 24px 35px rgba(0,0,0,.38));
+  }
+
   #planos {
     background: var(--white);
   }
@@ -947,6 +1070,8 @@
     .hero-actions { justify-content: center; }
     .stats-inner { grid-template-columns: repeat(2, 1fr); }
     .about-grid { grid-template-columns: 1fr; gap: 40px; }
+    .yplay-card { grid-template-columns: 1fr; padding: 34px 24px; }
+    .yplay-visual { min-height: 280px; order: -1; }
     .plans-grid { grid-template-columns: 1fr; }
     .plan-card.featured { transform: none; }
     .cities-grid { grid-template-columns: repeat(2, 1fr); }
@@ -977,6 +1102,9 @@
   @media (max-width: 480px) {
     .cities-grid { grid-template-columns: 1fr 1fr; }
     .stats-inner { grid-template-columns: repeat(2, 1fr); }
+    .yplay-features { grid-template-columns: 1fr; }
+    .yplay-actions .btn-primary { width: 100%; justify-content: center; }
+    .yplay-note { text-align: center; width: 100%; }
     .hero-ring { width: 260px; height: 260px; }
     .hero-center-logo { width: 150px; height: 150px; }
     .hero-center-logo .logo-text { font-size: 32px; }
@@ -1116,6 +1244,27 @@
   </div>
 </section>
 
+<!-- YPLAY -->
+<section class="section" id="yplay">
+  <div class="section-inner">
+    <div class="yplay-card">
+      <div class="yplay-content">
+        <h2 class="yplay-title">Planos acima de <em>300 mega</em> com plataforma de <em>streaming Yplay </em>incluso!</h2>
+        <p class="yplay-text">Assine a internet da Viu Telecom e aproveite o Yplay para assistir filmes, séries e conteúdos sob demanda!</p>
+        <ul class="yplay-features">
+        </ul>
+        <div class="yplay-actions">
+          <a href="#planos" class="btn-primary">Ver planos com Yplay</a>
+          <span class="yplay-note">Disponível a partir do Plano Pro 300 Mbps.</span>
+        </div>
+      </div>
+      <div class="yplay-visual">
+        <img src="yplay-streaming.png" alt="Yplay com filmes e series inclusos nos planos Viu Telecom" class="yplay-image">
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- PLANOS -->
 <section class="section" id="planos">
   <div class="section-inner">
@@ -1145,6 +1294,7 @@
         <div class="plan-speed">300<span>Mbps</span></div>
         <div class="plan-name">Plano Pro</div>
         <ul class="plan-features">
+          <li>Acesso ao YPlay</li>
           <li>Download e upload simétrico</li>
           <li>Suporte via WhatsApp e residêncial</li>
           <li>Ultra velocidade via fibra óptica</li>
@@ -1152,7 +1302,6 @@
         <div class="plan-price"><sub>R$</sub>79<sub>,00/mês</sub></div>
         <a href="https://wa.me/5527995271167?text=Olá! Tenho interesse no Plano Pro de 300Mbps." target="_blank" class="btn-plan">Contratar agora</a>
       </div>
-
       <!-- Plano 3 -->
       <div class="plan-card">
         <div class="plan-speed">500<span>Mbps</span></div>
